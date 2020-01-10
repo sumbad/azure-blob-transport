@@ -1,26 +1,32 @@
 {
-  "name": "winston-azure-storage-transport",
+  "name": "azure-blob-transport",
   "version": "3.1.0",
   "description": "",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/azure-blob-transport.js",
+  "typings": "dist/azure-blob-transport.d.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "chstone@microsoft.com",
+  "contributors": [
+    "chstone <chstone@microsoft.com>",
+    "Denis Sumbaev @sumbad"
+  ],
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.0",
-    "winston-transport": "^3.0.1"
+    "async": "^3.1.0",
+    "azure-storage": "^2.10.3",
+    "winston-transport": "^4.3.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ctstone/winston-azure-blob-transport.git"
+    "url": "https://github.com/sumbad/azure-blob-transport"
   },
   "devDependencies": {
-    "@types/async": "^2.0.47",
-    "@types/node": "^9.4.7",
-    "azure-storage": "^2.8.1"
+    "@types/async": "^3.0.3",
+    "@types/node": "12.12.17",
+    "typescript": "3.7.3"
   }
 }
