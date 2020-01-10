@@ -1,31 +1,34 @@
-# winston-azure-storage-transport
+# azure-blob-transport
+
+### This is a fork of [winston-azure-storage-transport](https://github.com/ctstone/winston-azure-storage-transport).
 
 Azure Storage transports for `winston >= 3`.
 
 ## Install
 ```
-npm install winston@next
-npm install winston-azure-storage-transport
-npm install azure-storage
+npm install winston azure-blob-transport
 ```
 
 ## Usage
 ```JavaScript
-const { AzureBlobTransport } = require('./index');
-const { BlobService } = require('azure-storage');
-const winston = require('winston');
+import { transports, createLogger, format } from 'winston';
+import { BlobService } from 'azure-storage';
+import { AzureBlobTransport } from 'azure-blob-transport';
 
-const blobTransport = new AzureBlobTransport({
-  blobs: new BlobService(),
+const azureBlobTransport = new AzureBlobTransport({
+  blobs: new BlobService(process.env['AzureWebJobsStorage'] || ''),
   containerName: 'mylogs',
-  blobName: 'myappendblob',
+  blobName: 'myappendblob'
 });
 
-const logger = winston.createLogger({
+const logger = createLogger({
+  exitOnError: false,
   level: 'info',
-  format: winston.format.json(),
-  transports: [ blobTransport ],
+  format: format.json(),
+  transports: [new transports.Console({}), azureBlobTransport]
 });
+
+export { logger };
 ```
 
 You can write logs 'silently' so that calls to the logger do not block the callback chain. In this case, listen for 'error' events on your AzureBlobTransport to handle IO errors.
