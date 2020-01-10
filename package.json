@@ -1,12 +1,14 @@
 {
   "name": "azure-blob-transport",
-  "version": "3.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Azure Storage Blob transport for winston@3",
   "main": "dist/azure-blob-transport.js",
   "typings": "dist/azure-blob-transport.d.ts",
   "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf dist && tsc",
+    "dev": "rm -rf dist && tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "chstone@microsoft.com",
